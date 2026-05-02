@@ -66,6 +66,7 @@ Desktop.ini
 *.tflite
 *.pb
 *.savedmodel
+*.rar
 
 # Keep JSON config files used by models
 !ml_models/**/*.json

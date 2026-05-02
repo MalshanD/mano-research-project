@@ -10,6 +10,7 @@ import {
     QuickActions,
     RecentActivity,
     UpcomingActivities,
+    AmbientAudioWidget,
 } from '../../components/features/dashboard';
 import { RiskOverview } from '../../components/features/predictions';
 import { ClusterBadge, WeeklyWellnessSummary } from '../../components/features/community';
@@ -22,6 +23,7 @@ import {
     getUserCommunity,
     getCommunityFeed,
     getDashboardContent,
+    searchAmbientSounds,
 } from '../../api/client';
 import {
     ChartBarIcon,
@@ -145,6 +147,14 @@ function Dashboard() {
         queryFn: () => getDashboardContent(),
         select: (res) => res.data ?? null,
         staleTime: 30 * 60 * 1000, // refresh every 30 min
+    });
+
+    // ── Ambient Sounds ────────────────────────────────────────────────────────
+    const { data: ambientSounds } = useQuery({
+        queryKey: ['ambientSounds'],
+        queryFn: () => searchAmbientSounds('calm'),
+        select: (res) => res.data ?? null,
+        staleTime: 60 * 60 * 1000, // refresh every hour
     });
 
     // ── Derived: risk scores ─────────────────────────────────────────────────
@@ -360,6 +370,11 @@ function Dashboard() {
                                     )}
                                 </div>
                             </Card>
+                        )}
+
+                        {/* Ambient Sounds */}
+                        {ambientSounds && ambientSounds.tracks && (
+                            <AmbientAudioWidget ambient={ambientSounds} />
                         )}
 
                         {/* Start Therapy Session CTA */}

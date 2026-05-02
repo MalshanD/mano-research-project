@@ -403,6 +403,12 @@ export const therapyCheckIn = (sessionId, moodScore, concern) =>
         body: JSON.stringify({ mood_score: moodScore, concern }),
     });
 
+export const searchAmbientSounds = (mood = 'calm', maxResults = 3) =>
+    request('/ambient/search', {
+        method: 'POST',
+        body: JSON.stringify({ mood, max_results: maxResults }),
+    });
+
 export const therapySendMessage = (sessionId, message, persona = 'counselor') =>
     request(`/therapy/${sessionId}/message`, {
         method: 'POST',
