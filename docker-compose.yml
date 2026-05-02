@@ -1,0 +1,113 @@
+# =============================================================================
+# MANO — Docker Compose
+#
+# Services:
+#   db       — MySQL 8.0  (persistent volume)
+#   redis    — Redis 7    (optional cache; API falls back to in-memory if down)
+#   api      — FastAPI + Uvicorn (Python 3.12, heavy ML stack)
+#   frontend — React/Vite build served by Nginx (proxies API calls to api)
+#
+# Usage:
+#   cp .env.docker .env
+#   # Fill in secrets in .env
+#   docker compose up --build
+#
+# NOTE: First `api` build downloads TF + PyTorch + transformers.
+#       Expect 10-20 min and ~8-12 GB image on the first run.
+# =============================================================================
+
+services:
+
+  # ---------------------------------------------------------------------------
+  # MySQL 8.0
+  # ---------------------------------------------------------------------------
+  db:
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: mano_db
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - mano_net
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+  # ---------------------------------------------------------------------------
+  # Redis 7 (optional cache backend)
+  # ---------------------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    networks:
+      - mano_net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  # ---------------------------------------------------------------------------
+  # MANO API (FastAPI)
+  # ---------------------------------------------------------------------------
+  api:
+    build:
+      context: ./mano-api
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      # Override DB/Redis URLs to point at docker service names
+      DATABASE_URL: mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/mano_db
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - mano_net
+    # Expose only internally; Nginx proxies public traffic to this service.
+    # Remove the ports block below after you put a real reverse proxy in front.
+    ports:
+      - "8000:8000"
+    volumes:
+      # Persist ML model files across container rebuilds (optional — remove if
+      # you prefer models baked into the image)
+      - ./mano-api/ml_models:/app/ml_models:ro
+
+  # ---------------------------------------------------------------------------
+  # MANO Frontend (Nginx serving Vite build)
+  # ---------------------------------------------------------------------------
+  frontend:
+    build:
+      context: ./mano-frontend
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - mano_net
+
+# =============================================================================
+# Volumes & Networks
+# =============================================================================
+volumes:
+  mysql_data:
+  redis_data:
+
+networks:
+  mano_net:
+    driver: bridge
