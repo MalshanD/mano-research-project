@@ -118,3 +118,18 @@ async def understand_my_risk_bundle(payload: _UnderstandMyRiskRequest) -> Unders
 )
 async def guided_therapy_bundle() -> GuidedTherapyEntryBundle:
     return page_bundles_service.guided_therapy_entry_bundle()
+
+
+class _FeedbackRequest(BaseModel):
+    patient_id: str
+    intervention_type: int
+    feedback: str
+    context: dict = {}
+
+@router.post(
+    "/feedback/intervention",
+    summary="Record user feedback for an intervention arm",
+)
+async def record_intervention_feedback(payload: _FeedbackRequest):
+    logger.info("recorded_intervention_feedback", patient_id=payload.patient_id, intervention_type=payload.intervention_type, feedback=payload.feedback)
+    return {"status": "success", "recorded": True}

@@ -50,10 +50,13 @@ export default function UnderstandMyRisk() {
     const toggle = async () => {
         if (!showAdvanced && !advanced && patientState) {
             setAdvancedLoading(true);
-            const { data: a } = await request('/xai/explain_risk', {
+            const { data: a, error: apiError } = await request('/xai/explain_risk', {
                 method: 'POST',
-                body: JSON.stringify({ patient_state: patientState }),
+                body: JSON.stringify(patientState),
             });
+            if (apiError) {
+                console.error("XAI Error:", apiError);
+            }
             setAdvanced(a);
             setAdvancedLoading(false);
         }
