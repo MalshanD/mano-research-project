@@ -1,0 +1,424 @@
+@import './styles/globals.css';
+
+/* ============================================================
+   Mano-Frontend UI Styling for Imported Pages
+   Uses mano-frontend light theme with neutral colors
+============================================================ */
+
+/* Add these to your existing animations section */
+
+@keyframes slide-in-left {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slide-in-right {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-in-left {
+    animation: slide-in-left 0.3s ease-out;
+}
+
+.animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+}
+
+.animate-fade-in-down {
+    animation: fade-in-down 0.3s ease-out;
+}
+
+/* Thin custom scrollbar for scrollable panels */
+.history-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+}
+.history-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+.history-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.history-scroll::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 99px;
+}
+.history-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+}
+
+/* ============================================================
+   Imported Pages Styling (Adapted to Light Theme)
+============================================================ */
+
+/* Page Structure */
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: #1f2937;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-subtitle {
+    font-size: 0.8125rem;
+    color: #6b7280;
+    font-weight: 400;
+}
+
+.page {
+    animation: fade-in 0.3s ease-out;
+}
+
+.fade-in {
+    animation: fade-in 0.3s ease-out both;
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Glass Card - Light Theme */
+.glass-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease-out;
+}
+
+.glass-card:hover {
+    border-color: #d1d5db;
+    background: #f3f4f6;
+}
+
+.glass-card.elevated {
+    background: #ffffff;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: #e5e7eb;
+}
+
+/* Data Display */
+.data-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 1.375rem;
+    letter-spacing: -0.02em;
+    color: #1f2937;
+}
+
+.data-label {
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+}
+
+.data-unit {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-left: 4px;
+}
+
+/* Badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+}
+
+.badge-safe {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.badge-caution {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.badge-risk {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.badge-predict {
+    background: #ede9fe;
+    color: #5b21b6;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: #3b82f6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #2563eb;
+    box-shadow: 0 4px 6px rgba(37, 99, 235, 0.1);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #374151;
+    border: 1px solid #d1d5db;
+}
+
+.btn-ghost:hover {
+    background: #f9fafb;
+    color: #1f2937;
+    border-color: #9ca3af;
+}
+
+.btn-sm {
+    padding: 4px 12px;
+    font-size: 0.75rem;
+}
+
+/* Text Colors */
+.text-safe { color: #10b981; }
+.text-caution { color: #f59e0b; }
+.text-risk { color: #ef4444; }
+.text-predict { color: #8b5cf6; }
+.text-success { color: #10b981; }
+.text-muted { color: #6b7280; }
+.text-secondary { color: #9ca3af; }
+
+/* Flex Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-xs { gap: 4px; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 16px; }
+.gap-lg { gap: 24px; }
+.gap-xl { gap: 32px; }
+
+/* Margin Utilities */
+.mt-sm { margin-top: 8px; }
+.mt-md { margin-top: 16px; }
+.mt-lg { margin-top: 24px; }
+.mt-xl { margin-top: 32px; }
+.mb-sm { margin-bottom: 8px; }
+.mb-md { margin-bottom: 16px; }
+.mb-lg { margin-bottom: 24px; }
+
+/* Width/Flex */
+.w-full { width: 100%; }
+.flex-1 { flex: 1; }
+
+/* Table Styling */
+.data-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 8px 16px;
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table td {
+    padding: 16px;
+    font-size: 0.875rem;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.data-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+/* Typing indicator bounce */
+@keyframes bounce {
+    0%, 60%, 100% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-4px);
+    }
+}
+
+/* Thin custom scrollbar for scrollable panels (e.g. Assessment History) */
+.history-scroll {
+    scrollbar-width: thin;                  /* Firefox */
+    scrollbar-color: #d1d5db transparent;   /* Firefox — thumb / track */
+}
+.history-scroll::-webkit-scrollbar {
+    width: 5px;
+}
+.history-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.history-scroll::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 99px;
+}
+.history-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+}
+:root {
+  --void: #f8fafc;
+  --surface: #ffffff;
+  --elevated: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(0, 0, 0, 0.05);
+  --border: #e2e8f0;
+  --card: #ffffff;
+
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --text-inverse: #ffffff;
+
+  --accent-primary: #3b82f6;
+  --accent-secondary: #8b5cf6;
+  
+  --safe: #22c55e;
+  --safe-dim: rgba(34, 197, 94, 0.1);
+  --risk: #ef4444;
+  --risk-dim: rgba(239, 68, 68, 0.1);
+  --caution: #eab308;
+  --caution-dim: rgba(234, 179, 8, 0.1);
+  --predict: #8b5cf6;
+  --predict-dim: rgba(139, 92, 246, 0.1);
+  --success: #22c55e;
+
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-5: 1.25rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  
+  --space-xs: 0.5rem;
+  --space-sm: 0.75rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+
+  --font-data: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-full: 9999px;
+
+  --duration-normal: 300ms;
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* === Input Fields & Forms === */
+.input-field, .select-field {
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    border-radius: 0.5rem;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    color: #1f2937;
+    font-size: 0.875rem;
+    outline: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.input-field:focus, .select-field:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.input-field::placeholder {
+    color: #9ca3af;
+}
+
+.input-field:disabled, .select-field:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+/* === Layout Grids === */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+
+/* Modal Background Blur Override if needed */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}

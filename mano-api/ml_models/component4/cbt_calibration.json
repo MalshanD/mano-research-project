@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "component": "component4.cbt",
+  "fit_metadata": {
+    "trainer": "component4-models/step5-cbt-distortion-detector/fit_cbt_calibration.py",
+    "train_csv": "cbt_training_data.csv",
+    "calibration_split": 0.3,
+    "min_ece_improvement": 0.1,
+    "rng_seed": 42,
+    "model_class_order_from_encoder": [
+      "black_and_white",
+      "catastrophizing",
+      "discounting_positive",
+      "emotional_reasoning",
+      "fortune_telling",
+      "labeling",
+      "mind_reading",
+      "none",
+      "overgeneralization",
+      "personalization",
+      "should_statements"
+    ],
+    "canonical_class_order": [
+      "none",
+      "catastrophizing",
+      "black_and_white",
+      "overgeneralization",
+      "mind_reading",
+      "fortune_telling",
+      "emotional_reasoning",
+      "should_statements",
+      "labeling",
+      "personalization",
+      "discounting_positive"
+    ],
+    "temperature_fit": {
+      "temperature": 0.3803322776797857,
+      "final_nll": 0.012391722454512453,
+      "ece_improvement": 0.8919
+    },
+    "isotonic_fit": {
+      "ece_improvement": 0.9476
+    }
+  },
+  "calibration": {
+    "method": "isotonic",
+    "temperature": 0.3803322776797857,
+    "isotonic_x": [
+      [
+        5.4119138166459015e-06,
+        0.2507677571244353,
+        0.9783277256374814,
+        0.9966510001067995
+      ],
+      [
+        4.726316033325497e-06,
+        0.07298100124126759,
+        0.9523445608466368,
+        0.9987400995677563
+      ],
+      [
+        4.115727183306743e-06,
+        0.20043629730540366,
+        0.7015983724529479,
+        0.9988574976240716
+      ],
+      [
+        1.8276674282871352e-08,
+        0.02690752203886513,
+        0.43160997609963725,
+        0.9888789651180846
+      ],
+      [
+        1.343537154090717e-06,
+        0.03253567974400406,
+        0.9067882029880425,
+        0.998674958863682
+      ],
+      [
+        1.560922254077559e-05,
+        0.19508137374707146,
+        0.9355414620079777,
+        0.9922370503064578
+      ],
+      [
+        3.8739320599956464e-07,
+        0.19235845107287233,
+        0.8361568587501795,
+        0.998373230171995
+      ],
+      [
+        2.2134683855644683e-06,
+        0.17840032807926112,
+        0.7655472926645429,
+        0.9912527761104641
+      ],
+      [
+        1.8208897210544355e-07,
+        0.13316308989726525,
+        0.9320751119967062,
+        0.9958604445533331
+      ],
+      [
+        3.7452227174937125e-06,
+        0.07092530286914443,
+        0.6948919081621101,
+        0.9946447130432255
+      ],
+      [
+        3.274558294219615e-07,
+        0.053956747269590856,
+        0.14353694443904452,
+        0.14673597447916087,
+        0.9461798433343289,
+        0.9880422126651357
+      ]
+    ],
+    "isotonic_y": [
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ]
+    ],
+    "n_classes": 11,
+    "class_names": [
+      "none",
+      "catastrophizing",
+      "black_and_white",
+      "overgeneralization",
+      "mind_reading",
+      "fortune_telling",
+      "emotional_reasoning",
+      "should_statements",
+      "labeling",
+      "personalization",
+      "discounting_positive"
+    ],
+    "raw_metrics": {
+      "ece": 0.0305,
+      "brier": 0.0099,
+      "accuracy": 0.9952,
+      "n_samples": 209,
+      "reliability_bins": [
+        {
+          "bin_lower": 0.0,
+          "bin_upper": 0.1,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.1,
+          "bin_upper": 0.2,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.2,
+          "bin_upper": 0.30000000000000004,
+          "n_samples": 1,
+          "mean_confidence": 0.2507677571244353,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.30000000000000004,
+          "bin_upper": 0.4,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.4,
+          "bin_upper": 0.5,
+          "n_samples": 1,
+          "mean_confidence": 0.43160997609963725,
+          "empirical_accuracy": 1.0
+        },
+        {
+          "bin_lower": 0.5,
+          "bin_upper": 0.6000000000000001,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.6000000000000001,
+          "bin_upper": 0.7000000000000001,
+          "n_samples": 1,
+          "mean_confidence": 0.6948919081621101,
+          "empirical_accuracy": 1.0
+        },
+        {
+          "bin_lower": 0.7000000000000001,
+          "bin_upper": 0.8,
+          "n_samples": 5,
+          "mean_confidence": 0.7532357762412281,
+          "empirical_accuracy": 1.0
+        },
+        {
+          "bin_lower": 0.8,
+          "bin_upper": 0.9,
+          "n_samples": 3,
+          "mean_confidence": 0.8637960207249379,
+          "empirical_accuracy": 1.0
+        },
+        {
+          "bin_lower": 0.9,
+          "bin_upper": 1.0,
+          "n_samples": 198,
+          "mean_confidence": 0.9818195038204294,
+          "empirical_accuracy": 1.0
+        }
+      ]
+    },
+    "calibrated_metrics": {
+      "ece": 0.0016,
+      "brier": 0.0011,
+      "accuracy": 1.0,
+      "n_samples": 209,
+      "reliability_bins": [
+        {
+          "bin_lower": 0.0,
+          "bin_upper": 0.1,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.1,
+          "bin_upper": 0.2,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.2,
+          "bin_upper": 0.30000000000000004,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.30000000000000004,
+          "bin_upper": 0.4,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.4,
+          "bin_upper": 0.5,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.5,
+          "bin_upper": 0.6000000000000001,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.6000000000000001,
+          "bin_upper": 0.7000000000000001,
+          "n_samples": 1,
+          "mean_confidence": 0.6666666666666666,
+          "empirical_accuracy": 1.0
+        },
+        {
+          "bin_lower": 0.7000000000000001,
+          "bin_upper": 0.8,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.8,
+          "bin_upper": 0.9,
+          "n_samples": 0,
+          "mean_confidence": 0.0,
+          "empirical_accuracy": 0.0
+        },
+        {
+          "bin_lower": 0.9,
+          "bin_upper": 1.0,
+          "n_samples": 208,
+          "mean_confidence": 1.0,
+          "empirical_accuracy": 1.0
+        }
+      ]
+    },
+    "fit_date": "2026-04-24T18:10:44+00:00",
+    "n_calibration_samples": 209
+  }
+}

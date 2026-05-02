@@ -1,0 +1,150 @@
+{
+  "catastrophizing": {
+    "label": "Catastrophizing",
+    "description": "Imagining the worst possible outcome and treating it as inevitable.",
+    "cbt_explanation": "You're jumping to the worst-case scenario. In reality, many outcomes are possible, and the worst case is rarely the most likely.",
+    "icon": "volcano",
+    "color": "#EF4444",
+    "reframe_templates": [
+      "What's the most likely outcome, not just the worst one?",
+      "Has the worst-case scenario actually happened before in similar situations?",
+      "If a friend told you this, would you agree it's definitely going to be that bad?",
+      "What evidence do you have that this will definitely happen?",
+      "Can you think of a time when you expected the worst and it turned out okay?"
+    ]
+  },
+  "black_and_white": {
+    "label": "Black & White Thinking",
+    "description": "Seeing things in only two categories \u2014 perfect or failure, with nothing in between.",
+    "cbt_explanation": "You're thinking in extremes. Most situations exist on a spectrum, and partial success is still success.",
+    "icon": "contrast",
+    "color": "#8B5CF6",
+    "reframe_templates": [
+      "Is there a middle ground between total success and complete failure?",
+      "On a scale of 1-10, where does this actually fall?",
+      "Would you judge someone else this harshly for the same thing?",
+      "What parts went well, even if not everything was perfect?",
+      "Can something be 'good enough' without being perfect?"
+    ]
+  },
+  "overgeneralization": {
+    "label": "Overgeneralization",
+    "description": "Taking one event and assuming it applies to everything, using words like 'always' or 'never'.",
+    "cbt_explanation": "You're taking a single event and applying it universally. One instance doesn't create a permanent pattern.",
+    "icon": "arrows_expand",
+    "color": "#F59E0B",
+    "reframe_templates": [
+      "Is this truly 'always' or 'never', or has there been at least one exception?",
+      "Are you basing this on one event or a real pattern with evidence?",
+      "Can you name a time when the opposite happened?",
+      "What would you say if you replaced 'always' with 'sometimes'?",
+      "Is this a fact or a feeling disguised as a fact?"
+    ]
+  },
+  "mind_reading": {
+    "label": "Mind Reading",
+    "description": "Assuming you know what others are thinking, usually something negative about you.",
+    "cbt_explanation": "You're assuming you know what someone else thinks without checking. We can't read minds \u2014 our guesses often reflect our own fears, not reality.",
+    "icon": "brain",
+    "color": "#3B82F6",
+    "reframe_templates": [
+      "Do you have actual evidence for what they're thinking, or are you guessing?",
+      "Have you asked them directly how they feel?",
+      "Could there be another explanation for their behavior?",
+      "Are you projecting your own fears onto them?",
+      "What would you think if you saw someone do what you did?"
+    ]
+  },
+  "fortune_telling": {
+    "label": "Fortune Telling",
+    "description": "Predicting the future negatively without evidence.",
+    "cbt_explanation": "You're predicting a negative outcome as if it's certain. None of us can see the future \u2014 predictions based on fear aren't facts.",
+    "icon": "crystal_ball",
+    "color": "#6366F1",
+    "reframe_templates": [
+      "What evidence do you have that this will definitely happen?",
+      "Have your negative predictions been accurate in the past?",
+      "What's a more balanced prediction based on actual evidence?",
+      "If you can't predict good outcomes, why trust bad predictions?",
+      "What steps can you take to influence a better outcome?"
+    ]
+  },
+  "emotional_reasoning": {
+    "label": "Emotional Reasoning",
+    "description": "Believing something is true just because you feel it strongly.",
+    "cbt_explanation": "Your feelings are real, but they aren't always accurate reflections of reality. Feeling scared doesn't mean you're in danger.",
+    "icon": "heart_pulse",
+    "color": "#EC4899",
+    "reframe_templates": [
+      "Just because you feel it, does that make it true?",
+      "What are the facts, separate from how you feel right now?",
+      "Would you feel the same way about this tomorrow or next week?",
+      "Has a strong feeling ever led you to a wrong conclusion before?",
+      "What would the evidence say if you took emotions out of it?"
+    ]
+  },
+  "should_statements": {
+    "label": "Should Statements",
+    "description": "Using rigid rules about how you or others 'should' behave, leading to guilt or frustration.",
+    "cbt_explanation": "You're applying rigid rules to yourself or others. 'Should' creates pressure and guilt. Try replacing it with 'I'd prefer' or 'It would be nice if'.",
+    "icon": "gavel",
+    "color": "#14B8A6",
+    "reframe_templates": [
+      "What if you replaced 'should' with 'I'd prefer to' or 'it would be nice if'?",
+      "Where did this rule come from? Is it truly universal?",
+      "Are you holding yourself to a standard you wouldn't expect of others?",
+      "What would happen if you didn't follow this 'should'?",
+      "Is this expectation realistic given your current circumstances?"
+    ]
+  },
+  "labeling": {
+    "label": "Labeling",
+    "description": "Attaching a fixed negative label to yourself or others based on a single event.",
+    "cbt_explanation": "You're defining yourself by one action or trait. People are complex \u2014 one mistake doesn't make you a 'failure', just like one success doesn't make you 'perfect'.",
+    "icon": "tag",
+    "color": "#F97316",
+    "reframe_templates": [
+      "Is this label the whole truth, or just one part of who you are?",
+      "Would you label a friend this way for the same thing?",
+      "Can you describe the behavior without the label?",
+      "What evidence contradicts this label?",
+      "Does one event really define an entire person?"
+    ]
+  },
+  "personalization": {
+    "label": "Personalization",
+    "description": "Blaming yourself for things outside your control, or taking everything personally.",
+    "cbt_explanation": "You're taking responsibility for something that isn't entirely yours to carry. Many factors contribute to outcomes \u2014 you're just one of them.",
+    "icon": "target",
+    "color": "#10B981",
+    "reframe_templates": [
+      "What other factors contributed to this situation besides you?",
+      "Is it really all your fault, or are there other people and circumstances involved?",
+      "Would you blame someone else completely if they were in your position?",
+      "What percentage of this was actually in your control?",
+      "Are you taking on responsibility that isn't yours?"
+    ]
+  },
+  "discounting_positive": {
+    "label": "Discounting the Positive",
+    "description": "Dismissing good experiences or achievements as if they don't count.",
+    "cbt_explanation": "You're filtering out the positive and only keeping the negative. Your achievements and good moments are real \u2014 they count too.",
+    "icon": "thumbs_down",
+    "color": "#64748B",
+    "reframe_templates": [
+      "If this happened to someone else, would you dismiss it so easily?",
+      "Why does this positive thing 'not count' but negative things do?",
+      "Can you sit with this good moment without explaining it away?",
+      "What if you accepted this positive experience at face value?",
+      "Would someone who cares about you agree that this doesn't matter?"
+    ]
+  },
+  "none": {
+    "label": "Balanced Thinking",
+    "description": "No cognitive distortion detected \u2014 this reflects healthy, balanced thinking.",
+    "cbt_explanation": "",
+    "icon": "check_circle",
+    "color": "#22C55E",
+    "reframe_templates": []
+  }
+}

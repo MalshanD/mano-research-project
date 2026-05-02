@@ -1,0 +1,136 @@
+{
+  "fit_date": "2026-04-24T08:43:00.700941+00:00",
+  "data_source": "synthetic_user_profiles.csv",
+  "n_train": 1600,
+  "n_test": 400,
+  "n_features": 7,
+  "feature_columns": [
+    "stress_score",
+    "anxiety_score",
+    "depression_score",
+    "body_score",
+    "behavior_score",
+    "emotional_score",
+    "social_score"
+  ],
+  "covariance_type": "full",
+  "sweep_range": [
+    3,
+    8
+  ],
+  "selection": {
+    "selected_k": 5,
+    "argmin_k": 5,
+    "method": "bic",
+    "parsimony_applied": false,
+    "parsimony_delta": 2.0,
+    "candidates": [
+      {
+        "k": 3,
+        "bic": 13942.120575725548,
+        "aic": 13366.700372545167,
+        "log_likelihood": -6576.350186272583,
+        "n_free_params": 107,
+        "converged": true,
+        "silhouette": 0.37428824060388366
+      },
+      {
+        "k": 4,
+        "bic": 13558.480551648947,
+        "aic": 12789.46102777236,
+        "log_likelihood": -6251.73051388618,
+        "n_free_params": 143,
+        "converged": true,
+        "silhouette": 0.3181978658180729
+      },
+      {
+        "k": 5,
+        "bic": 13548.017071793853,
+        "aic": 12585.398227221063,
+        "log_likelihood": -6113.699113610532,
+        "n_free_params": 179,
+        "converged": true,
+        "silhouette": 0.35303819717883994
+      },
+      {
+        "k": 6,
+        "bic": 13749.659157314722,
+        "aic": 12593.44099204573,
+        "log_likelihood": -6081.720496022865,
+        "n_free_params": 215,
+        "converged": true,
+        "silhouette": 0.2743128418009503
+      },
+      {
+        "k": 7,
+        "bic": 13905.086854958769,
+        "aic": 12555.269368993573,
+        "log_likelihood": -6026.634684496787,
+        "n_free_params": 251,
+        "converged": true,
+        "silhouette": 0.25462209097633837
+      },
+      {
+        "k": 8,
+        "bic": 14132.59929421162,
+        "aic": 12589.18248755022,
+        "log_likelihood": -6007.59124377511,
+        "n_free_params": 287,
+        "converged": true,
+        "silhouette": 0.18661183191016165
+      }
+    ],
+    "rejected": []
+  },
+  "community_names": [
+    "Thriving",
+    "Stable",
+    "Growing",
+    "Healing",
+    "Supported"
+  ],
+  "cluster_mapping": {
+    "0": {
+      "community_name": "Thriving",
+      "description": "For individuals reaching advanced wellness and thriving.",
+      "severity_score": 12.59,
+      "symptom_avg": 10.37,
+      "wellness_deficit": 14.81
+    },
+    "3": {
+      "community_name": "Stable",
+      "description": "For individuals maintaining their stability and wellness.",
+      "severity_score": 28.39,
+      "symptom_avg": 25.04,
+      "wellness_deficit": 31.75
+    },
+    "4": {
+      "community_name": "Growing",
+      "description": "For individuals actively building resilience and growing.",
+      "severity_score": 46.71,
+      "symptom_avg": 44.41,
+      "wellness_deficit": 49.0
+    },
+    "1": {
+      "community_name": "Healing",
+      "description": "For individuals focusing on recovery and active healing.",
+      "severity_score": 65.5,
+      "symptom_avg": 62.53,
+      "wellness_deficit": 68.46
+    },
+    "2": {
+      "community_name": "Supported",
+      "description": "For individuals needing strong support and guidance.",
+      "severity_score": 83.56,
+      "symptom_avg": 80.23,
+      "wellness_deficit": 86.89
+    }
+  },
+  "test_log_likelihood_total": -1524.3215086344208,
+  "test_log_likelihood_per_sample": -3.810803771586052,
+  "artifacts": {
+    "gmm_model": "gmm_model_dynamic.pkl",
+    "gmm_scaler": "gmm_scaler_dynamic.pkl",
+    "gmm_cluster_mapping": "gmm_cluster_mapping_dynamic.pkl"
+  }
+}

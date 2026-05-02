@@ -1,0 +1,135 @@
+# =============================================================================
+# MANO Mental Wellness API — Python Dependencies
+# =============================================================================
+# Core Framework
+# -----------------------------------------------------------------------------
+fastapi==0.135.1
+starlette==0.52.1
+uvicorn==0.41.0
+pydantic==2.12.5
+pydantic_core==2.41.5
+python-dotenv==1.2.2
+
+# Database
+# -----------------------------------------------------------------------------
+SQLAlchemy==2.0.48
+PyMySQL==1.1.2
+aiomysql==0.3.2
+greenlet==3.3.2
+
+# ML / Deep Learning
+# -----------------------------------------------------------------------------
+tensorflow==2.21.0
+torch==2.10.0
+keras==3.13.2
+transformers==5.3.0
+huggingface_hub==1.6.0
+tokenizers==0.22.2
+safetensors==0.7.0
+
+# Data Science
+# -----------------------------------------------------------------------------
+numpy==2.4.3
+pandas==3.0.1
+scikit-learn==1.8.0
+scipy==1.17.1
+joblib==1.5.3
+networkx==3.6.1
+ctgan==0.12.1
+
+# Security / Auth
+# -----------------------------------------------------------------------------
+bcrypt==4.0.1
+passlib==1.7.4
+
+# Sentiment & Emotion Analysis (Phase 1 — Chat Upgrade)
+# -----------------------------------------------------------------------------
+vaderSentiment==3.3.2
+
+# Explainability (Phase 2 — Component 2 SHAP Integration)
+# -----------------------------------------------------------------------------
+shap==0.46.0
+
+# HTTP / Networking
+# -----------------------------------------------------------------------------
+httpx==0.28.1
+httpcore==1.0.9
+requests==2.32.5
+urllib3==2.6.3
+certifi==2026.2.25
+charset-normalizer==3.4.5
+idna==3.11
+h11==0.16.0
+
+# CLI / Logging / Dev Tools
+# -----------------------------------------------------------------------------
+typer==0.24.1
+click==8.3.1
+rich==14.3.3
+structlog==25.5.0
+colorama==0.4.6
+Pygments==2.19.2
+termcolor==3.3.0
+tqdm==4.67.3
+shellingham==1.5.4
+
+# Infrastructure (Phase 0 — cache, rate-limiting, scheduling, migrations)
+# -----------------------------------------------------------------------------
+redis==5.2.1              # Async cache backend; app falls back to in-memory if URL unset
+slowapi==0.1.9            # Per-IP rate limiter (FastAPI-compatible)
+APScheduler==3.10.4       # Async scheduled jobs (PubMed cache refresh, cleanup)
+alembic==1.13.3           # DB migrations — baseline current schema, future diffs auto-generated
+aiokafka==0.12.0          # Optional Kafka event-bus backend (stubbed behind feature flag)
+
+# Document & HTML generation (Phase 3–5 — clinical passport, voice journal, reports)
+# -----------------------------------------------------------------------------
+reportlab==4.2.5          # PDF rendering for clinical passport
+bleach==6.2.0             # HTML sanitiser for user-submitted free-text
+
+# Testing
+# -----------------------------------------------------------------------------
+pytest==8.3.4
+pytest-asyncio==0.24.0
+pytest-cov==6.0.0
+
+# Serialization / Templating
+# -----------------------------------------------------------------------------
+Jinja2==3.1.6
+MarkupSafe==3.0.3
+protobuf==7.34.0
+flatbuffers==25.12.19
+PyYAML==6.0.3
+
+# Transitive / Support Libraries
+# -----------------------------------------------------------------------------
+absl-py==2.4.0
+annotated-types==0.7.0
+anyio==4.12.1
+astunparse==1.6.3
+filelock==3.25.0
+fsspec==2026.2.0
+gast==0.7.0
+google-pasta==0.2.0
+grpcio==1.78.0
+h5py==3.14.0
+hf-xet==1.3.2
+libclang==18.1.1
+markdown-it-py==4.0.0
+mdurl==0.1.2
+ml_dtypes==0.5.4
+mpmath==1.3.0
+namex==0.1.0
+opt_einsum==3.4.0
+optree==0.19.0
+packaging==26.0
+python-dateutil==2.9.0.post0
+regex==2026.2.28
+setuptools==82.0.1
+six==1.17.0
+sympy==1.14.0
+threadpoolctl==3.6.0
+typing-inspection==0.4.2
+typing_extensions==4.15.0
+tzdata==2025.3
+wheel==0.46.3
+wrapt==2.1.2
