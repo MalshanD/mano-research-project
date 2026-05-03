@@ -90,10 +90,10 @@ export default function MySummary() {
                             <div className="self-center justify-self-center lg:justify-self-end">
                                 <AnimatedRiskGauge
                                     riskLevel={data.risk_level}
-                                    highRiskProbability={data.risk_high_probability}
+                                    confidence={data.risk_confidence}
                                     severityColor={data.risk_render.severity_color}
                                     iconHint={data.risk_render.icon_hint}
-                                    sublabel={`${Math.round(data.risk_high_probability * 100)}% high-risk probability`}
+                                    sublabel={`${Math.round(data.risk_confidence * 100)}% confidence`}
                                 />
                             </div>
                         </div>

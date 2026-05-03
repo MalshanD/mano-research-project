@@ -63,7 +63,7 @@ class MySummaryBundle(BaseModel):
 
     greeting: str
     risk_level: RiskLevel
-    risk_high_probability: float
+    risk_confidence: float
     risk_render: RenderHint
 
     seven_day_metrics: MoodMetric
@@ -232,7 +232,7 @@ class UnderstandMyRiskBundle(BaseModel):
     primary_action: PrimaryAction
 
     risk_level: RiskLevel
-    risk_high_probability: float
+    risk_confidence: float
     risk_render: RenderHint
 
     plain_english_summary: str = Field(

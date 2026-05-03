@@ -78,9 +78,10 @@ export default function UnderstandMyRisk() {
                         <div className="mt-4 grid grid-cols-1 md:grid-cols-[auto_1fr] gap-6 items-center rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6">
                             <AnimatedRiskGauge
                                 riskLevel={data.risk_level}
-                                highRiskProbability={data.risk_high_probability}
+                                confidence={data.risk_confidence}
                                 severityColor={data.risk_render.severity_color}
                                 iconHint={data.risk_render.icon_hint}
+                                sublabel={`${Math.round(data.risk_confidence * 100)}% confidence`}
                             />
                             <div>
                                 <p className="text-xs uppercase tracking-wider text-slate-500">In one sentence</p>

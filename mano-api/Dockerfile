@@ -6,7 +6,7 @@
 #       Subsequent rebuilds are fast (requirements layer is cached).
 # =============================================================================
 
-FROM python:3.12-slim
+FROM python:3.12-bookworm
 
 # ---------------------------------------------------------------------------
 # System dependencies
@@ -14,11 +14,20 @@ FROM python:3.12-slim
 # libglib2.0-0 — GLib required by some ML/data libs
 # curl         — used by the Docker healthcheck
 # ---------------------------------------------------------------------------
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# RUN apt-get update && apt-get install -y --no-install-recommends \
+#         libgomp1 \
+#         libglib2.0-0 \
+#         curl \
+#     && rm -rf /var/lib/apt/lists/*
+
+RUN sed -i 's|http://deb.debian.org|https://deb.debian.org|g' /etc/apt/sources.list.d/debian.sources && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends \
         libgomp1 \
         libglib2.0-0 \
         curl \
     && rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /app
 

@@ -13,7 +13,7 @@ import { iconFor, classesFor, riskLabelFor } from '../../lib/c1/severityTokens';
 
 export default function AnimatedRiskGauge({
     riskLevel,           // "Low" | "Medium" | "High"
-    highRiskProbability, // 0..1
+    confidence,          // 0..1
     severityColor,       // e.g. "emerald-500"
     iconHint,            // e.g. "shield-check"
     sublabel,            // optional small caption under the gauge
@@ -23,7 +23,9 @@ export default function AnimatedRiskGauge({
     const classes = classesFor(severityColor);
 
     const [displayPct, setDisplayPct] = useState(0);
-    const targetPct = Math.round(highRiskProbability * 100);
+    const targetPct = typeof confidence === 'number' && !isNaN(confidence)
+        ? Math.round(confidence * 100)
+        : 0;
 
     useEffect(() => {
         if (reduce) {
@@ -50,7 +52,7 @@ export default function AnimatedRiskGauge({
     const c = 2 * Math.PI * r;
     const offset = c * (1 - displayPct / 100);
 
-    const ariaLabel = `${riskLabelFor(riskLevel)}, ${targetPct}% high-risk probability.`;
+    const ariaLabel = `${riskLabelFor(riskLevel)}, ${targetPct}% confidence.`;
 
     return (
         <figure

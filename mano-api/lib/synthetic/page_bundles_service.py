@@ -168,7 +168,7 @@ def my_summary_bundle(
     dyn, stat = parse_patient_state(patient_state)
     risk = RiskPredictionService().predict(dyn, stat)
     risk_level = _RISK_LEVELS[int(risk["risk_class"])]
-    high_p = float(risk["probabilities"][2])
+    confidence = float(risk["confidence"])
 
     # Trajectory alert
     alert = trajectory_alert_service.compute_alert(
@@ -230,7 +230,7 @@ def my_summary_bundle(
         primary_action=primary,
         greeting=_greeting_for(datetime.now().hour, risk_level, user_name),
         risk_level=risk_level,
-        risk_high_probability=high_p,
+        risk_confidence=confidence,
         risk_render=_risk_render_hint(risk_level),
         seven_day_metrics=_seven_day_metrics(patient_state.dynamic_history),
         weather_context=weather,
@@ -591,7 +591,7 @@ def understand_my_risk_bundle(
     dyn, stat = parse_patient_state(patient_state)
     risk = RiskPredictionService().predict(dyn, stat)
     level = _RISK_LEVELS[int(risk["risk_class"])]
-    high_p = float(risk["probabilities"][2])
+    confidence = float(risk["confidence"])
 
     # Heuristic top-factor extraction without re-running SHAP every time
     # (keeps latency <50 ms). Magnitude = absolute z-score from a healthy
@@ -661,7 +661,7 @@ def understand_my_risk_bundle(
             icon_hint="route",
         ),
         risk_level=level,
-        risk_high_probability=high_p,
+        risk_confidence=confidence,
         risk_render=_risk_render_hint(level),
         plain_english_summary=summary,
         top_factors=factors,

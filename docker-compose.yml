@@ -25,10 +25,11 @@ services:
     image: mysql:8.0
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: mano_db
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: DevPass2024
+      MYSQL_DATABASE: myapp_dev
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: DevPass2024
+
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
