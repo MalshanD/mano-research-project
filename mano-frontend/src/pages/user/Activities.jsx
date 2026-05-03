@@ -818,7 +818,6 @@ function Activities() {
         },
         {
             id: 'streaks',
-            id: 'streaks',
             label: 'Streaks & Badges',
             icon: <TrophyIcon className="w-4 h-4" />,
             content: (
