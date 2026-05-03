@@ -81,7 +81,7 @@ function Header({ onMenuClick, showMenuButton = true }) {
                     </Link>
 
                     {/* Search Bar - Desktop */}
-                    <div className="hidden md:flex items-center">
+                    {/* <div className="hidden md:flex items-center">
                         <div className="relative">
                             <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-terracotta-light/60" />
                             <input
@@ -93,7 +93,7 @@ function Header({ onMenuClick, showMenuButton = true }) {
                                 \u2318K
                             </kbd>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* Right Section */}
