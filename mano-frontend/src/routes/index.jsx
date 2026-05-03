@@ -57,6 +57,17 @@ const C1Sequencer      = lazy(() => import('../pages/c1/researcher/InterventionS
 const C1Uncertainty    = lazy(() => import('../pages/c1/researcher/UncertaintyExplorer'));
 const C1ClinicalReport = lazy(() => import('../pages/c1/researcher/ClinicalReport'));
 const C1ModelDiag      = lazy(() => import('../pages/c1/researcher/ModelDiagnostics'));
+
+// ── Component-1 standalone engines (researcher-gated additions) ───────────
+// These were the dense single-purpose pages from the pre-revamp surface.
+// Re-exposed under /c1/researcher/* so the underlying engines stay reachable
+// without bloating the 6-page consumer nav.
+const C1WhatIf         = lazy(() => import('../pages/user/synthetic/WhatIfSimulator'));
+const C1XAI            = lazy(() => import('../pages/user/synthetic/XAIExplainer'));
+const C1NBA            = lazy(() => import('../pages/user/synthetic/NextBestAction'));
+const C1Prescription   = lazy(() => import('../pages/user/synthetic/Prescription'));
+const C1Compare        = lazy(() => import('../pages/user/synthetic/InterventionCompare'));
+
 import ResearcherRoute from '../components/c1/ResearcherRoute';
 
 // Suspense wrapper
@@ -252,6 +263,13 @@ function AppRoutes() {
                     <Route path="/c1/researcher/uncertainty"           element={<SuspenseWrapper><ResearcherRoute><C1Uncertainty /></ResearcherRoute></SuspenseWrapper>} />
                     <Route path="/c1/researcher/clinical-report"       element={<SuspenseWrapper><ResearcherRoute><C1ClinicalReport /></ResearcherRoute></SuspenseWrapper>} />
                     <Route path="/c1/researcher/model-diagnostics"     element={<SuspenseWrapper><ResearcherRoute><C1ModelDiag /></ResearcherRoute></SuspenseWrapper>} />
+
+                    {/* Standalone engines (researcher-gated). Folded back from the legacy dense surface. */}
+                    <Route path="/c1/researcher/what-if"               element={<SuspenseWrapper><ResearcherRoute><C1WhatIf /></ResearcherRoute></SuspenseWrapper>} />
+                    <Route path="/c1/researcher/xai"                   element={<SuspenseWrapper><ResearcherRoute><C1XAI /></ResearcherRoute></SuspenseWrapper>} />
+                    <Route path="/c1/researcher/next-best-action"      element={<SuspenseWrapper><ResearcherRoute><C1NBA /></ResearcherRoute></SuspenseWrapper>} />
+                    <Route path="/c1/researcher/prescription"          element={<SuspenseWrapper><ResearcherRoute><C1Prescription /></ResearcherRoute></SuspenseWrapper>} />
+                    <Route path="/c1/researcher/intervention-compare"  element={<SuspenseWrapper><ResearcherRoute><C1Compare /></ResearcherRoute></SuspenseWrapper>} />
                 </Route>
 
                 {/* Professional Routes */}

@@ -17,15 +17,20 @@ from schemas.synthetic.whatif_schema import (
     WhatIfResponse,
     TrajectoryDay,
 )
+
+# Normalisation constants — needed so slider target values (raw units) are
+# scaled to [0, 1] before being blended into the normalised history tensor.
+from lib.synthetic.state_parser import (
+    _FEATURE_MIN,
+    _FEATURE_RANGE,
+    _denormalize_dynamic,
+    parse_patient_state,
+    clamp_simulated_vitals,
+)
+
 from schemas.synthetic.simulation_schema import (
     RiskPredictionResponse,
     RiskLevel,
-)
-
-# --- Reuse existing helpers from simulation_router ---
-from routes.synthetic.simulation_router import (
-    parse_patient_state,
-    clamp_simulated_vitals,
 )
 
 # --- Services ---
@@ -58,36 +63,53 @@ def blend_toward_targets(dynamic_np: np.ndarray, targets, blend_days: int) -> np
     not an abrupt jump — which is more realistic and produces better Seq2Seq output.
 
     Args:
-        dynamic_np: shape (1, 7, 4) — [sleep_hours, sleep_quality, heart_rate, stress_level]
-        targets: LifestyleTargets pydantic model
+        dynamic_np: shape (1, 7, 4) — already normalised to [0, 1] by parse_patient_state
+        targets: LifestyleTargets pydantic model (values in RAW units from the frontend slider)
         blend_days: how many of the last days to modify (1-7)
 
     Returns:
-        modified copy of dynamic_np, shape (1, 7, 4)
+        modified copy of dynamic_np, shape (1, 7, 4) — still in normalised [0, 1] space
+
+    IMPORTANT — target normalisation:
+        ``dynamic_np`` is in [0, 1] (normalised) space after parse_patient_state.
+        The user's lifestyle targets arrive in raw units (e.g. sleep_hours=9.0,
+        heart_rate=65). We MUST normalise those targets to [0, 1] before blending
+        them into the history array, otherwise the interpolation mixes incompatible
+        scales and produces nonsensical inputs for the Seq2Seq model.
     """
     modified = dynamic_np.copy()
 
-    # Feature index mapping (must match parse_patient_state order)
-    target_map = {
-        0: targets.sleep_hours,       # Index 0 = sleep_hours
-        1: targets.sleep_quality,     # Index 1 = sleep_quality
-        2: targets.heart_rate,        # Index 2 = heart_rate
-        3: targets.stress_level,      # Index 3 = stress_level
-    }
+    # Raw target values from the frontend slider (may be None if the user left
+    # a slider unchanged).
+    raw_targets = [
+        targets.sleep_hours,    # Index 0
+        targets.sleep_quality,  # Index 1
+        targets.heart_rate,     # Index 2
+        targets.stress_level,   # Index 3
+    ]
+
+    # Normalise each raw target to [0, 1] using the training-time MinMax constants.
+    # _FEATURE_MIN / _FEATURE_RANGE are imported from state_parser so the
+    # transform is always in sync with parse_patient_state.
+    normalised_targets = [
+        (raw_targets[i] - float(_FEATURE_MIN[i])) / float(_FEATURE_RANGE[i])
+        if raw_targets[i] is not None else None
+        for i in range(4)
+    ]
 
     # Only blend the last `blend_days` days
     start_day = 7 - blend_days
 
     for day_idx in range(start_day, 7):
-        # How far into the blend window (0.0 = barely changed, 1.0 = fully target)
+        # How far into the blend window (0.0 = barely changed, 1.0 = fully at target)
         progress = (day_idx - start_day + 1) / blend_days
 
-        for feat_idx, target_val in target_map.items():
-            if target_val is not None:
+        for feat_idx, norm_target in enumerate(normalised_targets):
+            if norm_target is not None:
                 original_val = modified[0, day_idx, feat_idx]
-                # Linear interpolation: original → target
+                # Linear interpolation in normalised space: original → normalised_target
                 modified[0, day_idx, feat_idx] = (
-                    original_val * (1 - progress) + target_val * progress
+                    original_val * (1 - progress) + norm_target * progress
                 )
 
     return modified
@@ -95,10 +117,18 @@ def blend_toward_targets(dynamic_np: np.ndarray, targets, blend_days: int) -> np
 
 # --- Helper: Convert numpy trajectory to response objects ---
 def numpy_to_trajectory(future_np: np.ndarray) -> list:
-    """Converts (1, 7, 4) numpy array to a list of TrajectoryDay objects."""
+    """Converts a (1, 7, 4) normalised numpy array to TrajectoryDay objects.
+
+    The Seq2Seq model outputs values in [0, 1] (normalised space).  We
+    denormalise back to real-world units before serialising so the frontend
+    charts display human-readable values (e.g. 8.5 hrs sleep, 72 bpm HR).
+    """
+    # Denormalise: [0, 1] → raw units ([0,12], [0,1], [50,120], [0,1])
+    future_raw = _denormalize_dynamic(future_np)
+
     trajectory = []
-    for i in range(future_np.shape[1]):
-        row = future_np[0, i]
+    for i in range(future_raw.shape[1]):
+        row = future_raw[0, i]
         trajectory.append(TrajectoryDay(
             day=i + 1,
             sleep_hours=round(float(np.clip(row[0], 0, 24)), 2),

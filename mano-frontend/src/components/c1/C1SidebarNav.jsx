@@ -1,13 +1,9 @@
 /**
  * C1SidebarNav — collapsible left rail for the Component-1 revamp.
  *
- * Renders the 6 consumer pages always; renders the 5 researcher
+ * Renders the 6 consumer pages always; renders the 10 researcher
  * pages only when the authenticated user has the researcher role.
  * Active route is visually + aria highlighted.
- *
- * Drop this into MainLayout (or anywhere a sidebar mounts) to expose
- * the new nav. The legacy /pages/user/synthetic/* pages remain
- * reachable from their existing entrypoints during the transition.
  */
 
 import { NavLink } from 'react-router-dom';
@@ -15,7 +11,8 @@ import { useAuth } from '../../contexts/AuthContext';
 import {
     LayoutDashboard, Sparkles, ListTree, BrainCircuit,
     Lightbulb, MessageSquareHeart, Beaker, ListOrdered,
-    Gauge, FileText, Cpu,
+    Gauge, FileText, Cpu, SlidersHorizontal, ScanSearch,
+    Zap, Stethoscope, BarChart3,
 } from 'lucide-react';
 import clsx from 'clsx';
 
@@ -29,11 +26,16 @@ const USER_ITEMS = [
 ];
 
 const RESEARCHER_ITEMS = [
-    { to: '/c1/researcher/simulation-lab',     label: 'Simulation Lab',       icon: Beaker },
-    { to: '/c1/researcher/sequencer',          label: 'Sequencer',            icon: ListOrdered },
-    { to: '/c1/researcher/uncertainty',        label: 'Uncertainty Explorer', icon: Gauge },
-    { to: '/c1/researcher/clinical-report',    label: 'Clinical + Batch',     icon: FileText },
-    { to: '/c1/researcher/model-diagnostics',  label: 'Model Diagnostics',    icon: Cpu },
+    { to: '/c1/researcher/simulation-lab',         label: 'Simulation Lab',       icon: Beaker },
+    { to: '/c1/researcher/sequencer',              label: 'Sequencer',            icon: ListOrdered },
+    { to: '/c1/researcher/uncertainty',            label: 'Uncertainty Explorer', icon: Gauge },
+    { to: '/c1/researcher/clinical-report',        label: 'Clinical + Batch',     icon: FileText },
+    { to: '/c1/researcher/model-diagnostics',      label: 'Model Diagnostics',    icon: Cpu },
+    { to: '/c1/researcher/what-if',                label: 'What-If Simulator',    icon: SlidersHorizontal },
+    { to: '/c1/researcher/xai',                    label: 'XAI Explainer',        icon: ScanSearch },
+    { to: '/c1/researcher/next-best-action',       label: 'Next-Best-Action',     icon: Zap },
+    { to: '/c1/researcher/prescription',           label: 'AI Prescription',      icon: Stethoscope },
+    { to: '/c1/researcher/intervention-compare',   label: 'Intervention Compare', icon: BarChart3 },
 ];
 
 function Item({ to, label, Icon }) {
