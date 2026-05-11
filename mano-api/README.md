@@ -32,3 +32,7 @@ drop table in the Server
 ./venv/bin/python drop_tables.py
 
 ./venv/bin/python question_add.py
+
+
+
+download ML models - https://drive.google.com/file/d/1OYWDLV7DvOTNZcGUqu_iSqKCjLqjtUdU/view?usp=sharing
